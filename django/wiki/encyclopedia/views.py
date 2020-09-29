@@ -50,3 +50,19 @@ def new_entry(request):
         return HttpResponseRedirect(reverse("page", args=(title,)))
     
     return render(request, "encyclopedia/new_entry.html")
+
+def edit_page(request, title):
+    if request.method == "POST":
+        entry_content = request.POST['edit-content']
+        filename = "entries/" + title + ".md"
+        with open(filename, "w") as f:
+            f.write(entry_content)
+        return HttpResponseRedirect(reverse("page", args=(title,)))
+
+
+    entry_content = util.get_entry(title)
+
+    return render(request, "encyclopedia/edit_page.html", {
+        "edit_title": title,
+        "edit_content": entry_content
+    })
