@@ -6,5 +6,7 @@
 
 {% block body %}
     {{ fweb|safe }}
-    <p><a href="{% url 'edit page' title %}">Edit this entry</a></p>
+    <div>
+        <p><a href="{% url 'edit page' title %}">Edit this entry</a></p>
+    </div>
 {% endblock %}
